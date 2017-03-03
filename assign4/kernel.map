@@ -1,0 +1,419 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD build/GameMenu.o
+LOAD build/switchPointer.o
+LOAD build/jtag.o
+LOAD build/randNum.o
+LOAD build/down.o
+LOAD build/FrameBufferPixel.o
+LOAD build/up.o
+LOAD build/check.o
+LOAD build/downwall.o
+LOAD build/pauseMenu.o
+LOAD build/upwall.o
+LOAD build/leftbody.o
+LOAD build/rightwall.o
+LOAD build/main.o
+LOAD build/apple.o
+LOAD build/leftwall.o
+LOAD build/showscore.o
+LOAD build/rightbody.o
+LOAD build/door.o
+LOAD build/right.o
+LOAD build/downbody.o
+LOAD build/upbody.o
+LOAD build/Driver.o
+LOAD build/left.o
+LOAD uart.o
+LOAD gpio.o
+
+.init           0x00008000        0x4
+ *(.init)
+ .init          0x00008000        0x4 build/main.o
+                0x00008000                _start
+ .init          0x00008004        0x0 build/Driver.o
+
+.data           0x00009080    0xe6280
+ *(.data)
+ .data          0x00009080        0x0 build/GameMenu.o
+ .data          0x00009080        0x0 build/switchPointer.o
+ .data          0x00009080        0x0 build/jtag.o
+ .data          0x00009080        0x0 build/randNum.o
+ .data          0x00009080        0x0 build/down.o
+ .data          0x00009080       0x30 build/FrameBufferPixel.o
+                0x00009080                FrameBufferInfo
+                0x000090a8                FrameBufferPointer
+ .data          0x000090b0        0x0 build/up.o
+ .data          0x000090b0        0x0 build/check.o
+ .data          0x000090b0        0x0 build/downwall.o
+ .data          0x000090b0        0x0 build/pauseMenu.o
+ .data          0x000090b0        0x0 build/upwall.o
+ .data          0x000090b0        0x0 build/leftbody.o
+ .data          0x000090b0        0x0 build/rightwall.o
+ .data          0x000090b0    0xe6050 build/main.o
+                0x000090b0                timer
+                0x000090c0                number
+                0x000090c4                randomNumber
+                0x000090cc                randomNumberdoor
+                0x000090d4                state
+                0x000098f0                PointerPos
+                0x000098f4                PointerPosP
+                0x000098f8                SnakeLength
+                0x00009cf8                comparelength
+                0x0000a0f8                Buffer
+                0x0000a4f8                ABuffer
+                0x0000a8f8                wall
+                0x0000b0f8                apple
+                0x0000b8f8                startmenu
+                0x000588f8                start
+                0x000618f8                quit
+                0x0006a8f8                pointer
+                0x0006c8f8                showwin
+                0x000a60f8                showlose
+                0x000e40f8                restart
+ .data          0x000ef100        0x0 build/apple.o
+ .data          0x000ef100        0x0 build/leftwall.o
+ .data          0x000ef100        0x0 build/showscore.o
+ .data          0x000ef100        0x0 build/rightbody.o
+ .data          0x000ef100        0x0 build/door.o
+ .data          0x000ef100        0x0 build/right.o
+ .data          0x000ef100        0x0 build/downbody.o
+ .data          0x000ef100        0x0 build/upbody.o
+ .data          0x000ef100      0x200 build/Driver.o
+ .data          0x000ef300        0x0 build/left.o
+ .data          0x000ef300        0x0 uart.o
+ .data          0x000ef300        0x0 gpio.o
+ *.c.o(*)
+
+.igot.plt       0x000ef300        0x0
+ .igot.plt      0x00000000        0x0 build/GameMenu.o
+
+.text           0x000ef300     0x2d48
+ *.c.o(.text)
+ *(.text)
+ .text          0x000ef300      0x114 build/GameMenu.o
+                0x000ef300                GameMenu
+ .text          0x000ef414      0x15c build/switchPointer.o
+                0x000ef414                switchPointer
+ .text          0x000ef570       0x8c build/jtag.o
+                0x000ef570                EnableJTAG
+ .text          0x000ef5fc       0x34 build/randNum.o
+                0x000ef5fc                randNum
+ .text          0x000ef630      0x1b8 build/down.o
+                0x000ef630                moveDown
+ .text          0x000ef7e8      0x100 build/FrameBufferPixel.o
+                0x000ef7e8                InitFrameBuffer
+                0x000ef830                DrawPixel
+                0x000ef878                MailboxWrite
+                0x000ef8a8                MailboxRead
+ .text          0x000ef8e8      0x1b8 build/up.o
+                0x000ef8e8                moveUp
+ .text          0x000efaa0       0xe0 build/check.o
+                0x000efaa0                checkWL
+ .text          0x000efb80      0x17c build/downwall.o
+                0x000efb80                downwall
+ .text          0x000efcfc      0x3d4 build/pauseMenu.o
+                0x000efcfc                pauseMenu
+                0x000efea4                switch
+ .text          0x000f00d0      0x17c build/upwall.o
+                0x000f00d0                upwall
+ .text          0x000f024c       0xf0 build/leftbody.o
+                0x000f024c                leftbody
+ .text          0x000f033c      0x19c build/rightwall.o
+                0x000f033c                rightwall
+ .text          0x000f04d8      0x6a0 build/main.o
+                0x000f04e0                initGame
+                0x000f053c                start1
+                0x000f057c                InitBackGround
+                0x000f058c                InitWall
+                0x000f0800                drawBackground
+                0x000f0848                drawChar
+                0x000f08a4                snakeMove
+                0x000f096c                Up
+                0x000f09a0                Left
+                0x000f09d4                Right
+                0x000f0a08                Down
+                0x000f0a40                drawCell
+                0x000f0a94                drawColour
+                0x000f0ae4                Wait
+ .text          0x000f0b78      0x28c build/apple.o
+                0x000f0b78                test
+ .text          0x000f0e04      0x19c build/leftwall.o
+                0x000f0e04                leftwall
+ .text          0x000f0fa0      0x314 build/showscore.o
+                0x000f0fa0                showscore
+ .text          0x000f12b4       0xf0 build/rightbody.o
+                0x000f12b4                rightbody
+ .text          0x000f13a4      0x288 build/door.o
+                0x000f13a4                door
+ .text          0x000f162c      0x1b8 build/right.o
+                0x000f162c                moveRight
+ .text          0x000f17e4       0xf0 build/downbody.o
+                0x000f17e4                downbody
+ .text          0x000f18d4       0xf0 build/upbody.o
+                0x000f18d4                upbody
+ .text          0x000f19c4      0x240 build/Driver.o
+                0x000f19c4                InitController
+                0x000f19f0                readInput
+ .text          0x000f1c04      0x1b8 build/left.o
+                0x000f1c04                moveLeft
+ .text          0x000f1dbc      0x1b4 uart.o
+                0x000f1dbc                InitUART
+                0x000f1e7c                PutCharUART
+                0x000f1e98                GetCharUART
+                0x000f1eb4                WriteStringUART
+                0x000f1ee0                ReadLineUART
+ .text          0x000f1f70       0xd8 gpio.o
+                0x000f1f70                GetGpioAddress
+                0x000f1f78                SetGpioFunction
+                0x000f1fc4                SetGpio
+                0x000f2000                GetGpio
+OUTPUT(build/output.elf elf32-littlearm)
+
+.glue_7         0x000f2048        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x000f2048        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x000f2048        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x000f2048        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x000f2048        0x0
+ .iplt          0x00000000        0x0 build/GameMenu.o
+
+.rel.dyn        0x000f2048        0x0
+ .rel.iplt      0x00000000        0x0 build/GameMenu.o
+
+.bss            0x000f2048        0x0
+ .bss           0x000f2048        0x0 build/GameMenu.o
+ .bss           0x000f2048        0x0 build/switchPointer.o
+ .bss           0x000f2048        0x0 build/jtag.o
+ .bss           0x000f2048        0x0 build/randNum.o
+ .bss           0x000f2048        0x0 build/down.o
+ .bss           0x000f2048        0x0 build/FrameBufferPixel.o
+ .bss           0x000f2048        0x0 build/up.o
+ .bss           0x000f2048        0x0 build/check.o
+ .bss           0x000f2048        0x0 build/downwall.o
+ .bss           0x000f2048        0x0 build/pauseMenu.o
+ .bss           0x000f2048        0x0 build/upwall.o
+ .bss           0x000f2048        0x0 build/leftbody.o
+ .bss           0x000f2048        0x0 build/rightwall.o
+ .bss           0x000f2048        0x0 build/main.o
+ .bss           0x000f2048        0x0 build/apple.o
+ .bss           0x000f2048        0x0 build/leftwall.o
+ .bss           0x000f2048        0x0 build/showscore.o
+ .bss           0x000f2048        0x0 build/rightbody.o
+ .bss           0x000f2048        0x0 build/door.o
+ .bss           0x000f2048        0x0 build/right.o
+ .bss           0x000f2048        0x0 build/downbody.o
+ .bss           0x000f2048        0x0 build/upbody.o
+ .bss           0x000f2048        0x0 build/Driver.o
+ .bss           0x000f2048        0x0 build/left.o
+ .bss           0x000f2048        0x0 uart.o
+ .bss           0x000f2048        0x0 gpio.o
+
+.ARM.attributes
+                0x00000000       0x26
+ .ARM.attributes
+                0x00000000       0x26 build/GameMenu.o
+ .ARM.attributes
+                0x00000026       0x26 build/switchPointer.o
+ .ARM.attributes
+                0x0000004c       0x26 build/jtag.o
+ .ARM.attributes
+                0x00000072       0x26 build/randNum.o
+ .ARM.attributes
+                0x00000098       0x26 build/down.o
+ .ARM.attributes
+                0x000000be       0x26 build/FrameBufferPixel.o
+ .ARM.attributes
+                0x000000e4       0x26 build/up.o
+ .ARM.attributes
+                0x0000010a       0x26 build/check.o
+ .ARM.attributes
+                0x00000130       0x26 build/downwall.o
+ .ARM.attributes
+                0x00000156       0x26 build/pauseMenu.o
+ .ARM.attributes
+                0x0000017c       0x26 build/upwall.o
+ .ARM.attributes
+                0x000001a2       0x26 build/leftbody.o
+ .ARM.attributes
+                0x000001c8       0x26 build/rightwall.o
+ .ARM.attributes
+                0x000001ee       0x26 build/main.o
+ .ARM.attributes
+                0x00000214       0x26 build/apple.o
+ .ARM.attributes
+                0x0000023a       0x26 build/leftwall.o
+ .ARM.attributes
+                0x00000260       0x26 build/showscore.o
+ .ARM.attributes
+                0x00000286       0x26 build/rightbody.o
+ .ARM.attributes
+                0x000002ac       0x26 build/door.o
+ .ARM.attributes
+                0x000002d2       0x26 build/right.o
+ .ARM.attributes
+                0x000002f8       0x26 build/downbody.o
+ .ARM.attributes
+                0x0000031e       0x26 build/upbody.o
+ .ARM.attributes
+                0x00000344       0x26 build/Driver.o
+ .ARM.attributes
+                0x0000036a       0x26 build/left.o
+ .ARM.attributes
+                0x00000390       0x26 uart.o
+ .ARM.attributes
+                0x000003b6       0x26 gpio.o
+
+.debug_line     0x00000000     0x128d
+ .debug_line    0x00000000       0x8e build/GameMenu.o
+ .debug_line    0x0000008e       0xa1 build/switchPointer.o
+ .debug_line    0x0000012f       0x61 build/jtag.o
+ .debug_line    0x00000190       0x4c build/randNum.o
+ .debug_line    0x000001dc       0xae build/down.o
+ .debug_line    0x0000028a       0x96 build/FrameBufferPixel.o
+ .debug_line    0x00000320       0xac build/up.o
+ .debug_line    0x000003cc       0x7e build/check.o
+ .debug_line    0x0000044a       0xa5 build/downwall.o
+ .debug_line    0x000004ef      0x148 build/pauseMenu.o
+ .debug_line    0x00000637       0xa3 build/upwall.o
+ .debug_line    0x000006da       0x81 build/leftbody.o
+ .debug_line    0x0000075b       0xae build/rightwall.o
+ .debug_line    0x00000809      0x21c build/main.o
+ .debug_line    0x00000a25       0xe8 build/apple.o
+ .debug_line    0x00000b0d       0xad build/leftwall.o
+ .debug_line    0x00000bba      0x109 build/showscore.o
+ .debug_line    0x00000cc3       0x82 build/rightbody.o
+ .debug_line    0x00000d45       0xe4 build/door.o
+ .debug_line    0x00000e29       0xaf build/right.o
+ .debug_line    0x00000ed8       0x81 build/downbody.o
+ .debug_line    0x00000f59       0x7f build/upbody.o
+ .debug_line    0x00000fd8       0xd8 build/Driver.o
+ .debug_line    0x000010b0       0xae build/left.o
+ .debug_line    0x0000115e       0xb6 uart.o
+ .debug_line    0x00001214       0x79 gpio.o
+
+.debug_info     0x00000000      0xab6
+ .debug_info    0x00000000       0x6d build/GameMenu.o
+ .debug_info    0x0000006d       0x72 build/switchPointer.o
+ .debug_info    0x000000df       0x5b build/jtag.o
+ .debug_info    0x0000013a       0x6c build/randNum.o
+ .debug_info    0x000001a6       0x69 build/down.o
+ .debug_info    0x0000020f       0x67 build/FrameBufferPixel.o
+ .debug_info    0x00000276       0x67 build/up.o
+ .debug_info    0x000002dd       0x6a build/check.o
+ .debug_info    0x00000347       0x6d build/downwall.o
+ .debug_info    0x000003b4       0x6e build/pauseMenu.o
+ .debug_info    0x00000422       0x6b build/upwall.o
+ .debug_info    0x0000048d       0x6d build/leftbody.o
+ .debug_info    0x000004fa       0x6e build/rightwall.o
+ .debug_info    0x00000568       0x65 build/main.o
+ .debug_info    0x000005cd       0x6a build/apple.o
+ .debug_info    0x00000637       0x6d build/leftwall.o
+ .debug_info    0x000006a4       0x6e build/showscore.o
+ .debug_info    0x00000712       0x6e build/rightbody.o
+ .debug_info    0x00000780       0x69 build/door.o
+ .debug_info    0x000007e9       0x6a build/right.o
+ .debug_info    0x00000853       0x6d build/downbody.o
+ .debug_info    0x000008c0       0x6b build/upbody.o
+ .debug_info    0x0000092b       0x5c build/Driver.o
+ .debug_info    0x00000987       0x69 build/left.o
+ .debug_info    0x000009f0       0x63 uart.o
+ .debug_info    0x00000a53       0x63 gpio.o
+
+.debug_abbrev   0x00000000      0x206
+ .debug_abbrev  0x00000000       0x14 build/GameMenu.o
+ .debug_abbrev  0x00000014       0x14 build/switchPointer.o
+ .debug_abbrev  0x00000028       0x14 build/jtag.o
+ .debug_abbrev  0x0000003c       0x14 build/randNum.o
+ .debug_abbrev  0x00000050       0x14 build/down.o
+ .debug_abbrev  0x00000064       0x14 build/FrameBufferPixel.o
+ .debug_abbrev  0x00000078       0x14 build/up.o
+ .debug_abbrev  0x0000008c       0x14 build/check.o
+ .debug_abbrev  0x000000a0       0x14 build/downwall.o
+ .debug_abbrev  0x000000b4       0x14 build/pauseMenu.o
+ .debug_abbrev  0x000000c8       0x14 build/upwall.o
+ .debug_abbrev  0x000000dc       0x14 build/leftbody.o
+ .debug_abbrev  0x000000f0       0x14 build/rightwall.o
+ .debug_abbrev  0x00000104       0x12 build/main.o
+ .debug_abbrev  0x00000116       0x14 build/apple.o
+ .debug_abbrev  0x0000012a       0x14 build/leftwall.o
+ .debug_abbrev  0x0000013e       0x14 build/showscore.o
+ .debug_abbrev  0x00000152       0x14 build/rightbody.o
+ .debug_abbrev  0x00000166       0x14 build/door.o
+ .debug_abbrev  0x0000017a       0x14 build/right.o
+ .debug_abbrev  0x0000018e       0x14 build/downbody.o
+ .debug_abbrev  0x000001a2       0x14 build/upbody.o
+ .debug_abbrev  0x000001b6       0x14 build/Driver.o
+ .debug_abbrev  0x000001ca       0x14 build/left.o
+ .debug_abbrev  0x000001de       0x14 uart.o
+ .debug_abbrev  0x000001f2       0x14 gpio.o
+
+.debug_aranges  0x00000000      0x348
+ .debug_aranges
+                0x00000000       0x20 build/GameMenu.o
+ .debug_aranges
+                0x00000020       0x20 build/switchPointer.o
+ .debug_aranges
+                0x00000040       0x20 build/jtag.o
+ .debug_aranges
+                0x00000060       0x20 build/randNum.o
+ .debug_aranges
+                0x00000080       0x20 build/down.o
+ .debug_aranges
+                0x000000a0       0x20 build/FrameBufferPixel.o
+ .debug_aranges
+                0x000000c0       0x20 build/up.o
+ .debug_aranges
+                0x000000e0       0x20 build/check.o
+ .debug_aranges
+                0x00000100       0x20 build/downwall.o
+ .debug_aranges
+                0x00000120       0x20 build/pauseMenu.o
+ .debug_aranges
+                0x00000140       0x20 build/upwall.o
+ .debug_aranges
+                0x00000160       0x20 build/leftbody.o
+ .debug_aranges
+                0x00000180       0x20 build/rightwall.o
+ .debug_aranges
+                0x000001a0       0x28 build/main.o
+ .debug_aranges
+                0x000001c8       0x20 build/apple.o
+ .debug_aranges
+                0x000001e8       0x20 build/leftwall.o
+ .debug_aranges
+                0x00000208       0x20 build/showscore.o
+ .debug_aranges
+                0x00000228       0x20 build/rightbody.o
+ .debug_aranges
+                0x00000248       0x20 build/door.o
+ .debug_aranges
+                0x00000268       0x20 build/right.o
+ .debug_aranges
+                0x00000288       0x20 build/downbody.o
+ .debug_aranges
+                0x000002a8       0x20 build/upbody.o
+ .debug_aranges
+                0x000002c8       0x20 build/Driver.o
+ .debug_aranges
+                0x000002e8       0x20 build/left.o
+ .debug_aranges
+                0x00000308       0x20 uart.o
+ .debug_aranges
+                0x00000328       0x20 gpio.o
+
+.debug_ranges   0x00000000       0x20
+ .debug_ranges  0x00000000       0x20 build/main.o
